@@ -1,0 +1,159 @@
+* {
+    font-family: 'Merienda', sans-serif;
+}
+
+body {
+    background-color: #f8d9b8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+a.back {
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    padding: 10px;
+    background-color: #ff6f00;
+    border-radius: 999px;
+    width: 5%;
+    height: auto;
+    text-decoration: none;
+
+    transition: all 0.2s ease-in-out;
+}
+a.back:hover {
+    text-decoration: none;
+    background-color: #b14d00;
+}
+
+h1 {
+    color: #333;
+    text-align: left;
+    font-size: 24px;
+}
+
+button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 10px 0;
+    background: #ff6f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #e65100;
+}
+
+textarea, input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#comments p {
+    background: #ffcc80;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+#favoriteBtn {
+    background: #e91e63;
+    border-radius: 20px;
+}
+#favoriteBtn:hover {
+    background: #c2185b;
+}
+
+.kategori {
+    display: flex;
+    gap: 1em;
+}
+#kat {
+    color: white;
+    text-align: center;
+    background: #e91e63;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 10px;
+    width: auto;
+}
+
+
+
+.comment-box {
+    background: #ffcc80;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.comment-box strong {
+    color: #333;
+    font-size: 14px;
+}
+
+.comment-box p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+a {
+    display: inline-block;
+    color: #e65100;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container .konten {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container .konten .bahan {
+    flex: 1;
+}
+
+.container .konten figure.foto {
+    flex: 0;
+}
+
+.container .konten figure.foto img {
+    width: 300px;
+    height: auto;
+
+    border-radius: 20px;
+    box-shadow: black 0 4px 10px 0;
+    border: #e65100 solid 5px;
+}
+
+.container .konten figure.foto figcaption {
+    text-align: center;
+}
+

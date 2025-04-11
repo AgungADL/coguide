@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 166, 130,1);
+    display: flex;
+}
+
+
+.sidebar {
+    margin-top: 40px;
+    width: 200px;
+    padding: 20px;
+    background-color: #fdfdfd;
+}
+
+.sidebar h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.filter-category, .filter-budget {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: #ff9461;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.apply-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ff6347;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.category-btn, .price-btn, .profile-icon {
+    background-color: rgba(255, 199, 176,1);
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-bar {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+    outline: none;
+}
+
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 220px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.rating {
+    color: #ffd700;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.favorite-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #ff6347;
+    cursor: pointer;
+}

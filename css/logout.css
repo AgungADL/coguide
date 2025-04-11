@@ -1,0 +1,71 @@
+* {
+    font-family: 'Merienda', sans-serif;
+  }
+ 
+  body {
+    background-color: rgba(255, 199, 176, 1); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+  }
+
+  
+  .logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  
+  .logout-box {
+    background-color: white;
+    padding: 40px; 
+    border-radius: 15px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    width: 400px; 
+  }
+
+  
+  .logout-box h2 {
+    font-size: 28px; 
+    margin-bottom: 30px; 
+  }
+
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+  }
+
+  .yes-btn, .no-btn {
+    padding: 15px 30px; 
+    font-size: 20px; 
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .yes-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .no-btn {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .yes-btn:hover {
+    background-color: #45a049;
+  }
+
+  .no-btn:hover {
+    background-color: #e53935;
+  }
