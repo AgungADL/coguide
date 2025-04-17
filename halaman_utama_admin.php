@@ -7,16 +7,19 @@ if (!$koneksi) {
 }
 
 session_start();
-// session_start();
-// if(empty ($_SESSION ["login"])){
-//     header ("Location:login.php");
-// }
+
+if(empty ($_SESSION ["login"])){
+    header ("Location:login.php");
+}
 
 $ambilKategori = "select * from kategori";
 $hasilKategori = $koneksi->query($ambilKategori);
 
 $ambilBudget = "select * from budget";
 $hasilBudget = $koneksi->query($ambilBudget);
+
+$ambilResep = "select * from resep";
+$hasilResep = $koneksi->query($ambilResep);
 
 ?>
 
@@ -87,23 +90,31 @@ $hasilBudget = $koneksi->query($ambilBudget);
         </div>
 
         <div class="resep-container">
-            <div class="card" data-kategori="Nusantara" data-budget="medium"
-                onclick="window.location.href='halaman_resep.php'">
-                <img src="foto/rujak.jpg" alt="Rujak Buah">
-                <h3 class="menuTitle">Rujak Buah</h3>
-                <p>
-                    Rujak adalah makanan yang dibuat dari buah-buahan kadang-kadang disertai sayuran yang diiris,
-                    kemudian diberi bumbu yang terdiri atas asam, gula, cabai, dan sebagainya.
-                </p>
-                <div class="kat">
-                    <p id="katIsi">Nusantara</p>
-                    <p id="katIsi">Rp 50.000</p>
-                </div>
-                <div class="crud">
-                    <a href="" class="delete">🗑️</a>
-                    <a href="updateResep.php" class="update">✏️</a>
-                </div>
-            </div>
+            <?php
+            if ($hasilResep->num_rows > 0) {
+                while ($baris3 = $hasilResep->fetch_assoc()) {
+                    ?>
+                    <div class="card" data-kategori="<?php echo $baris3['kategori']; ?>"
+                        data-budget="<?php echo $baris3['budget']; ?>"
+                        onclick="window.location.href='halaman_resep_admin.php?id= <?php echo $baris3['id_resep']; ?>'">
+                        <img src="<?php echo $baris3['foto']; ?>" alt="<?php echo $baris3['namaResep']; ?>">
+                        <h3 class="menuTitle"><?php echo $baris3['namaResep']; ?></h3>
+                        <p>
+                            <?php echo $baris3['deskripsi']; ?>
+                        </p>
+                        <div class="kat">
+                            <p id="katIsi"><?php echo $baris3['kategori']; ?></p>
+                            <p id="katIsi"><?php echo $baris3['budget']; ?></p>
+                        </div>
+                        <div class="crud">
+                            <a href="php/deleteResep.php?id= <?php echo $baris3['id_resep']; ?>" class="delete">🗑️</a>
+                            <a href="php/updateResep.php?id= <?php echo $baris3['id_resep']; ?>" class="update">✏️</a>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </div>
 
@@ -124,8 +135,8 @@ $hasilBudget = $koneksi->query($ambilBudget);
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-youtube"></i></a>
-                <h3><a href="">About Us</a></h3>
             </div>
+            <a href="aboutUsAdmin.php" class="aboutUs">About Us</a>
         </div>
 
         <div class="footer-bottom">
@@ -149,21 +160,20 @@ $hasilBudget = $koneksi->query($ambilBudget);
                 let resepBudget = resep.getAttribute("data-budget");
                 let resepTitle = resep.querySelector(".menuTitle").innerText.toLowerCase();
 
-                // Cek apakah sesuai filter
                 let cocokKategori = kategori === "" || kategori === resepKategori;
                 let cocokBudget = budget === "" || budget === resepBudget;
                 let cocokSearch = searchQuery === "" || resepTitle.includes(searchQuery);
 
-                // Tampilkan jika cocok, sembunyikan jika tidak
                 if (cocokKategori && cocokBudget && cocokSearch) {
-                    setTimeout(() => {
-                        resep.classList.add("show");
-                    }, 100); // Tambah delay biar smooth
+                    resep.classList.add("show");
+                    resep.classList.remove("hide");
                 } else {
+                    resep.classList.add("hide");
                     resep.classList.remove("show");
                 }
             });
         }
+
 
         document.getElementById("kategori").addEventListener("change", filterResep);
         document.getElementById("budget").addEventListener("change", filterResep);

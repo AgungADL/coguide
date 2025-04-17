@@ -45,7 +45,7 @@ $sudahFavorit = $cekFavorit->num_rows > 0;
 
     <body>
         <div class="container">
-            <a href="halaman_utama.php" class="back">Back</a>
+            <a href="halamanFavorit.php" class="back">Back</a>
 
             <h1><?= $baris['namaResep']; ?></h1>
             <form action="php/favorite_toggle.php" method="post" style="display:inline;">
@@ -93,7 +93,7 @@ $sudahFavorit = $cekFavorit->num_rows > 0;
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='comment-box'>";
                     echo "<strong>" . htmlspecialchars($row['username']) . "</strong>";
-                    echo "<p>" . nl2br(htmlspecialchars($row['comment'])) . "<br><small>" . $row['created_at'] . "</small></p>";
+                    echo "<p>" . htmlspecialchars($row['comment']) . "<br><small>" . $row['created_at'] . "</small></p>";
                     if ($row['username'] === $username) {
                         echo "<form action='php/hapus_komentar.php' method='post' style='margin-top:5px;'>";
                         echo "<input type='hidden' name='id' value='{$row['id']}'>";

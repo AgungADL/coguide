@@ -45,10 +45,10 @@ $sudahFavorit = $cekFavorit->num_rows > 0;
 
     <body>
         <div class="container">
-            <a href="halaman_utama.php" class="back">Back</a>
+            <a href="favoritAdmin.php" class="back">Back</a>
 
             <h1><?= $baris['namaResep']; ?></h1>
-            <form action="php/favorite_toggle.php" method="post" style="display:inline;">
+            <form action="php/favorite_toggle_admin.php" method="post" style="display:inline;">
                 <input type="hidden" name="id_resep" value="<?= $idResep; ?>">
                 <button type="submit" id="favoriteBtn">
                     <?= $sudahFavorit ? "❤️" : "🤍"; ?>
@@ -77,7 +77,7 @@ $sudahFavorit = $cekFavorit->num_rows > 0;
         <?php endif; ?>
 
         <h2>Komentar</h2>
-        <form id="commentForm" action="php/komentar.php" method="post">
+        <form id="commentForm" action="php/komentar_admin.php" method="post">
             <input type="hidden" name="username" value="<?= $username; ?>">
             <input type="hidden" name="id_resep" value="<?= $idResep; ?>">
             <textarea name="comment" placeholder="Tambahkan komentar..." required></textarea>
@@ -92,10 +92,13 @@ $sudahFavorit = $cekFavorit->num_rows > 0;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='comment-box'>";
+                    echo "<div class='comment-header'>";
+                    echo "<img class='avatar' src='foto/profil.png' alt='avatar'>";
                     echo "<strong>" . htmlspecialchars($row['username']) . "</strong>";
+                    echo "</div>";
                     echo "<p>" . nl2br(htmlspecialchars($row['comment'])) . "<br><small>" . $row['created_at'] . "</small></p>";
                     if ($row['username'] === $username) {
-                        echo "<form action='php/hapus_komentar.php' method='post' style='margin-top:5px;'>";
+                        echo "<form action='php/hapus_komentar_admin.php' method='post' style='margin-top:5px;'>";
                         echo "<input type='hidden' name='id' value='{$row['id']}'>";
                         echo "<input type='hidden' name='id_resep' value='{$idResep}'>";
                         echo "<button type='submit' style='background:#e53935; color:white; padding:5px 10px; border:none; border-radius:5px;'>Hapus</button>";

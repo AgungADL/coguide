@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +13,11 @@
   <!-- google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
   <div class="container">
     <div class="back-button">
@@ -25,15 +29,43 @@
       <form action="" method="post">
         <input type="email" name="email" placeholder="EMAIL" required>
         <input type="text" name="uname" placeholder="USERNAME" required>
-        <input type="password" name="pass" placeholder="PASSWORD" required>
+        <div class="password-wrapper">
+          <input type="password" id="password" name="pass" placeholder="PASSWORD" required>
+          <span class="toggle-password" onclick="togglePassword()">•ᴗ•</span>
+        </div>
         <button type="submit" name="kirim">Register</button>
       </form>
     </div>
     <div class="logo">
-      <img src="foto/z.png" alt="CoGuide Logo">
+      <img src="foto/coguide.png" alt="CoGuide Logo">
     </div>
   </div>
+
+  <script>
+    const passwordInput = document.getElementById("password");
+    const toggleIcon = document.querySelector(".toggle-password");
+
+    passwordInput.addEventListener("input", () => {
+      if (passwordInput.value.length > 0) {
+        toggleIcon.style.display = "block";
+      } else {
+        toggleIcon.style.display = "none";
+      }
+    });
+
+    function togglePassword() {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.textContent = ">ᴗ<";
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.textContent = "•ᴗ•";
+      }
+    }
+  </script>
+
 </body>
+
 </html>
 
 <?php
@@ -41,41 +73,41 @@ session_start();
 include "php/koneksi.php";
 
 if (!$koneksi) {
-    echo "Tidak konek";
+  echo "Tidak konek";
 } else {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['kirim'])) {
-        $email = trim($_POST['email']);
-        $Uname = trim($_POST['uname']);
-        $pass = trim($_POST['pass']);
-        $role = "pengunjung";
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['kirim'])) {
+    $email = trim($_POST['email']);
+    $Uname = trim($_POST['uname']);
+    $pass = trim($_POST['pass']);
+    $role = "pengunjung";
 
-        if (!empty($email) && !empty($Uname) && !empty($pass)) {
-            // Cek apakah email atau username sudah ada
-            $cekSQL = "SELECT * FROM user WHERE email = ? OR username = ?";
-            $stmt = $koneksi->prepare($cekSQL);
-            $stmt->bind_param("ss", $email, $Uname);
-            $stmt->execute();
-            $result = $stmt->get_result();
+    if (!empty($email) && !empty($Uname) && !empty($pass)) {
+      // Cek apakah email atau username sudah ada
+      $cekSQL = "SELECT * FROM user WHERE email = ? OR username = ?";
+      $stmt = $koneksi->prepare($cekSQL);
+      $stmt->bind_param("ss", $email, $Uname);
+      $stmt->execute();
+      $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
-                // Jika akun sudah ada
-                echo "<script>alert('Email atau Username sudah terdaftar!'); window.location='register.php';</script>";
-            } else {
+      if ($result->num_rows > 0) {
+        // Jika akun sudah ada
+        echo "<script>alert('Email atau Username sudah terdaftar!'); window.location='register.php';</script>";
+      } else {
 
-                // Insert data ke database
-                $SQL = "INSERT INTO user (email, username, password, role) VALUES (?, ?, ?, ?)";
-                $stmt = $koneksi->prepare($SQL);
-                $stmt->bind_param("ssss", $email, $Uname, $pass, $role);
+        // Insert data ke database
+        $SQL = "INSERT INTO user (email, username, password, role) VALUES (?, ?, ?, ?)";
+        $stmt = $koneksi->prepare($SQL);
+        $stmt->bind_param("ssss", $email, $Uname, $pass, $role);
 
-                if ($stmt->execute()) {
-                    echo "<script>alert('Register berhasil'); window.location='login.php';</script>";
-                } else {
-                    echo "Error: " . $stmt->error;
-                }
-            }
+        if ($stmt->execute()) {
+          echo "<script>alert('Register berhasil'); window.location='login.php';</script>";
         } else {
-            echo "<script>alert('Harap isi semua field.');</script>";
+          echo "Error: " . $stmt->error;
         }
+      }
+    } else {
+      echo "<script>alert('Harap isi semua field.');</script>";
     }
+  }
 }
 ?>

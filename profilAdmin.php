@@ -4,8 +4,6 @@ if (empty($_SESSION["login"])) {
     header("Location:login.php");
 }
 
-// $cari = "select username from user where username = '" . $_SESSION['nm_user'] . "' and password = '" . $_SESSION['pw_user'] . "'";
-// $hasil = $koneksi->query($cari);
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +12,7 @@ if (empty($_SESSION["login"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoGuide - Profile</title>
+    <title>CoGuide | <?php echo $_SESSION['nm_user'] ?></title>
     <link rel="stylesheet" href="css/halamanProfil.css">
 
     <!-- my own website icon -->

@@ -21,16 +21,22 @@
 <body>
   <div class="container">
     <div class="back-button">
-      <a href="halaman_sementara.html">&larr;</a>
+      <a href="index.html">&larr;</a>
     </div>
     <div class="login-box">
       <h1>LOGIN</h1>
       <p class="subtitle">CoGuide</p>
       <form action="" method="post">
         <input type="text" name="uname" placeholder="USERNAME" required>
-        <input type="password" name="pass" placeholder="PASSWORD" required>
+
+        <div class="password-wrapper">
+          <input type="password" id="password" name="pass" placeholder="PASSWORD" required>
+          <span class="toggle-password" onclick="togglePassword()">•ᴗ•</span>
+        </div>
+
         <button type="submit" name="kirim">Login</button>
       </form>
+
       <p class="register-text">
         Don't have an account? <a href="register.php">Register here!</a>
       </p>
@@ -39,6 +45,30 @@
       <img src="foto/coguide.png" alt="CoGuide Logo">
     </div>
   </div>
+
+  <script>
+    const passwordInput = document.getElementById("password");
+    const toggleIcon = document.querySelector(".toggle-password");
+
+    passwordInput.addEventListener("input", () => {
+      if (passwordInput.value.length > 0) {
+        toggleIcon.style.display = "block";
+      } else {
+        toggleIcon.style.display = "none";
+      }
+    });
+
+    function togglePassword() {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.textContent = ">ᴗ<";
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.textContent = "•ᴗ•";
+      }
+    }
+  </script>
+
 </body>
 
 </html>
@@ -64,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['email_user'] = $user['email'];
 
     if ($user['role'] === 'admin') {
-      echo "<script>alert('Selamat " . $user['username'] . ", anda sudah berhasil login!!.'); window.location.href='add_data.php';</script>";
+      echo "<script>alert('Selamat " . $user['username'] . ", anda sudah berhasil login!!.'); window.location.href='halaman_utama_admin.php';</script>";
 
       exit;
     } else {

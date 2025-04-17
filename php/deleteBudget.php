@@ -5,7 +5,7 @@ include 'koneksi.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $hapus = "DELETE FROM budget WHERE idBudget = $id";
+    $hapus = "DELETE FROM budget WHERE id_budget = $id";
 
     if ($koneksi->query($hapus)) {
         echo "<script>window.location='../add_budget.php';</script>";

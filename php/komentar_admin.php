@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("iss", $id_resep, $username, $comment);
 
     if ($stmt->execute()) {
-        header("Location: ../halaman_resep.php?id=$id_resep");
+        header("Location: ../halaman_resep_admin.php?id=$id_resep");
         exit();
     } else {
         echo "Gagal menyimpan komentar.";

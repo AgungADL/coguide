@@ -4,7 +4,7 @@ session_destroy();
 
 echo "<script>
     alert('Anda berhasil log out.');
-    window.location.href = '../halaman_sementara.html';
+    window.location.href = '../index.html';
     window.close();
 </script>";
 

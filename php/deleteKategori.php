@@ -5,7 +5,7 @@ include 'koneksi.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $hapus = "DELETE FROM kategori WHERE idKategori = $id";
+    $hapus = "DELETE FROM kategori WHERE id_kategori = $id";
 
     if ($koneksi->query($hapus)) {
         echo "<script>window.location='../add_kategori.php';</script>";

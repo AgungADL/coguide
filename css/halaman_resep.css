@@ -58,11 +58,15 @@ button:hover {
 }
 
 textarea, input {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+textarea {
+    resize: none;
 }
 
 #comments p {
@@ -76,11 +80,18 @@ textarea, input {
 
 
 #favoriteBtn {
-    background: #e91e63;
-    border-radius: 20px;
+    background: #ef5d8e;
+    border-radius: 99px;
+
+    font-size: 24px;
+    transition: transform 0.2s ease;
+    border: none;
+}
+#favoriteBtn:active {
+    transform: scale(1.4);
 }
 #favoriteBtn:hover {
-    background: #c2185b;
+    transform: scale(1.2);
 }
 
 .kategori {
@@ -97,13 +108,12 @@ textarea, input {
     width: auto;
 }
 
-
-
 .comment-box {
     background: #ffcc80;
     padding: 15px;
     border-radius: 10px;
     margin-top: 10px;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
 .comment-box strong {
@@ -115,6 +125,21 @@ textarea, input {
     font-size: 14px;
     color: #555;
     margin-top: 5px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff6f00;
 }
 
 a {
@@ -151,9 +176,63 @@ a:hover {
     border-radius: 20px;
     box-shadow: black 0 4px 10px 0;
     border: #e65100 solid 5px;
+    transition: transform 0.3s ease;
+}
+
+.container .konten figure.foto img:hover {
+    transform: scale(1.05);
 }
 
 .container .konten figure.foto figcaption {
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    a.back {
+        width: 9%;
+    
+        transition: all 0.2s ease-in-out;
+    }
+    a.back:hover {
+        text-decoration: none;
+        background-color: #b14d00;
+    }
+
+    .container .konten {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .container .konten .bahan {
+        margin-bottom: 20px;
+    }
+    
+    .container .konten figure.foto img {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    h1 {
+        font-size: clamp(20px, 4vw, 30px);
+    }
+    
+    button, textarea, input {
+        font-size: 1rem;
+    }
+
+    .kategori {
+        flex-wrap: wrap;
+        justify-content: left;
+    }
+    
+    form#commentForm {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

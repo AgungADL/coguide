@@ -1,143 +1,160 @@
 * {
     font-family: 'Merienda', sans-serif;
+    box-sizing: border-box;
 }
+
 body {
-    
     margin: 0;
     padding: 0;
+    background-color: #FDCAB5;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #FDCAB5;
+    min-height: 100vh;
 }
 
 .container {
-    background-color: #FFFFFF;
-    width: 70%;
-    max-width: 800px;
+    background: #fff;
+    width: 90%;
+    max-width: 900px;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Header Styles */
 .header {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
 .back-button {
     font-size: 24px;
-    color: black;
     cursor: pointer;
+    transition: color 0.3s;
 }
+
 .back-button:hover {
-    color: rgb(139, 139, 139);
+    color: #999;
 }
 
 .title-section {
     text-align: center;
+    margin-bottom: 25px;
 }
 
-h1 {
-    font-weight: bold;
-    font-size: 24px;
-    margin: 0;
-    color: rgb(252, 108, 51);
+.title-section h1 {
+    color: #FC6C33;
+    font-size: 28px;
+    margin-bottom: 5px;
 }
 
 .subtitle {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 20px;
+    color: #666;
+    font-size: 16px;
 }
 
-/* Form Styles */
 .form-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: 40px;
+    margin-bottom: 30px;
 }
 
 .input-group {
-    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
-label {
-    display: block;
+.input-group label {
     font-weight: bold;
-    margin-bottom: 5px;
-    color: rgb(252, 108, 51);
+    margin-bottom: 8px;
+    color: #FC6C33;
 }
 
-input[type="text"],
-select,
-textarea {
-    width: 100%;
+.input-group input {
     padding: 10px;
-    border: 1px solid #C0C0C0;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 14px;
-    color: #191919;
+    font-size: 15px;
+    color: #333;
 }
 
-textarea {
-    resize: none;
-    height: 80px;
-}
-
-.logo {
-    display: block;
-    width: 70px;
-    height: 70px;
-    margin-top: 10px;
-}
-
-/* Add Button Styles */
 .add-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    background-color: #C0C0C0;
-    color: white;
+    margin-top: 12px;
+    padding: 10px;
+    background-color: #FC6C33;
     border: none;
     border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
+    color: white;
     font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .add-button:hover {
-    background-color: #A0A0A0;
+    background-color: #e95b22;
+}
+
+.katebud {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
 .katebud a {
-    color: rgb(255, 144, 100);
+    color: #FF9064;
     text-decoration: none;
 }
+
 .katebud a:hover {
-    color: rgb(252, 108, 51);
     text-decoration: underline;
 }
 
-table,
-tr,td, th {
-    border: darksalmon solid 1px;
-    border-radius: 5px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #FC6C33;
+    border-radius: 4px;
     text-align: center;
 }
 
-.buang {
-    color: white;
-    background-color: red;
+th {
+    background-color: #FFE2D3;
+    color: #333;
 }
+
+.buang {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
 .buang:hover {
-    color: rgb(124, 124, 124);
-    background-color: green;
+    background-color: #c62828;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    table, th, td {
+        font-size: 12px;
+    }
 }

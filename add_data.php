@@ -6,10 +6,9 @@ if (!$koneksi) {
 }
 
 session_start();
-// session_start();
-// if(empty ($_SESSION ["login"])){
-//     header ("Location:login.php");
-// }
+if(empty ($_SESSION ["login"])){
+    header ("Location:login.php");
+}
 
 $ambilKategori = "select * from kategori";
 $hasilKategori = $koneksi->query($ambilKategori);
@@ -51,14 +50,20 @@ $hasilBudget = $koneksi->query($ambilBudget);
             <div class="form-container">
                 <div class="input-group">
                     <label for="namaResep">NAMA RESEP</label>
-                    <input type="text" id="namaResep" name="namaResep" placeholder="NAMA RESEP">
+                    <input type="text" id="namaResep" name="namaResep" placeholder="NAMA RESEP" required>
 
-                    <label for="bahanCara">BAHAN DAN CARA</label>
-                    <textarea id="bahanCara" name="bahanCara" placeholder="BAHAN DAN CARA"></textarea>
+                    <label for="deskripsi">DESKRIPSI</label>
+                    <textarea id="deskripsi" name="deskripsi" placeholder="MASUKKAN DESKRIPSI RESEP" required></textarea>
+
+                    <label for="bahanCara">BAHAN</label>
+                    <textarea id="bahan" name="bahan" placeholder="MASUKKAN BAHAN-BAHAN" required></textarea>
+
+                    <label for="cara">CARA</label>
+                    <textarea id="cara" name="cara" placeholder="MASUKKAN CARA MEMASAK" required></textarea>
                 </div>
                 <div class="input-group">
                     <label for="kategori">KATEGORI</label>
-                    <select id="kategori" name="kategori">
+                    <select id="kategori" name="kategori" required>
                         <option value="" disabled selected>PILIH KATEGORI</option>
                         <?php
                         if ($hasilKategori->num_rows > 0) {
@@ -74,7 +79,7 @@ $hasilBudget = $koneksi->query($ambilBudget);
                     </select>
 
                     <label for="budget">BUDGET</label>
-                    <select id="budget" name="budget">
+                    <select id="budget" name="budget" required>
                         <option value="" disabled selected>PILIH BUDGET</option>
                         <?php
                         if ($hasilBudget->num_rows > 0) {
@@ -89,7 +94,7 @@ $hasilBudget = $koneksi->query($ambilBudget);
 
                     <!-- Logo placeholder -->
                     <label for="foto">FOTO</label>
-                    <input type="file" id="foto" name="foto" accept="image/*">
+                    <input type="file" id="foto" name="foto" accept="image/*" required>
                 </div>
             </div>
             <button class="add-button">ADD</button>
@@ -106,12 +111,17 @@ include "php/koneksi.php";
 if (!$koneksi) {
     echo "Tidak konek";
 }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama = $_POST["namaResep"];
-    $kategori = $_POST["kategori"];
-    $bahanCara = $_POST["bahanCara"];
-    $budget = $_POST["budget"];
 
+// Proses form jika data sudah dikirim
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $namaResep = $_POST["namaResep"];       // Ambil nama resep
+    $deskripsi = $_POST["deskripsi"];       // Ambil deskripsi resep
+    $bahan = $_POST["bahan"];               // Ambil bahan
+    $cara = $_POST["cara"];                 // Ambil cara memasak
+    $kategori = $_POST["kategori"];         // Ambil kategori
+    $budget = $_POST["budget"];             // Ambil budget
+
+    // Handle foto upload
     $foto_dir = "uploads/";
     if (!is_dir($foto_dir)) {
         mkdir($foto_dir, 0755, true);
@@ -119,22 +129,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $foto = "";
     if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] == 0) {
-        $foto_name = time() . "_" . basename($_FILES["foto"]["name"]);
+        $foto_name = basename($_FILES["foto"]["name"]);
         $foto_path = $foto_dir . $foto_name;
         if (move_uploaded_file($_FILES["foto"]["tmp_name"], $foto_path)) {
-            $foto = $foto_path;
+            $foto = $foto_path; // Menyimpan path gambar
         }
     }
-    
-    $sql = "INSERT INTO resep (nama, bahanCara, kategori, budget, foto) VALUES (?, ?, ?, ?, ?)";
+
+    // Query untuk memasukkan data ke database
+    $sql = "INSERT INTO resep (namaResep, deskripsi, bahan, cara, kategori, budget, foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $koneksi->prepare($sql);
-    $stmt->bind_param("sssss", $nama, $bahanCara, $kategori, $budget, $foto);
+    $stmt->bind_param("sssssss", $namaResep, $deskripsi, $bahan, $cara, $kategori, $budget, $foto);
     
+    // Eksekusi query dan cek apakah berhasil
     if ($stmt->execute()) {
-        echo "<script> alert ('Data berhasil ditambahkan!') </script>";
+        echo "<script> alert ('Data berhasil ditambahkan!'); window.location.href='halaman_utama_admin.php'; </script>";
     } else {
         echo "Error: " . $stmt->error;
     }
+
+    // Tutup statement
     $stmt->close();
 }
 ?>

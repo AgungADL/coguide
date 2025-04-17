@@ -3,9 +3,6 @@
     if(empty ($_SESSION ["login"])){
         header ("Location:login.php");
     }
-
-    // $cari = "select username from user where username = '" . $_SESSION['nm_user'] . "' and password = '" . $_SESSION['pw_user'] . "'";
-    // $hasil = $koneksi->query($cari);
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoGuide - Profile</title>
+    <title>CoGuide | <?php echo $_SESSION['nm_user'] ?></title>
     <link rel="stylesheet" href="css/halamanProfil.css">
 
     <!-- my own website icon -->
@@ -28,7 +25,7 @@
     <div class="container">
         <!-- Back Button -->
         <div class="back-button">
-            <a href="halaman_utama_admin.php"><img src="foto/panah.png" alt="Back Icon" style="height: auto; width: 200%; transform: scaleX(-1);" class="tblKembali"></a> <!-- Add the path to your back icon -->
+            <a href="halaman_utama.php"><img src="foto/panah.png" alt="Back Icon" style="height: auto; width: 200%; transform: scaleX(-1);" class="tblKembali"></a> <!-- Add the path to your back icon -->
         </div>
 
         <!-- Profile Card -->

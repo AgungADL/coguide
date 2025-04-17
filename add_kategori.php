@@ -6,10 +6,9 @@ if (!$koneksi) {
 }
 
 session_start();
-// session_start();
-// if(empty ($_SESSION ["login"])){
-//     header ("Location:login.php");
-// }
+if (empty($_SESSION["login"])) {
+    header("Location:login.php");
+}
 
 $ambilKategori = "select * from kategori";
 $hasilKategori = $koneksi->query($ambilKategori);
@@ -21,7 +20,7 @@ $hasilKategori = $koneksi->query($ambilKategori);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Data</title>
+    <title>Add Data | Kategori</title>
     <link rel="stylesheet" href="css/add_katbud.css">
 
     <!-- my own website icon -->
@@ -51,30 +50,31 @@ $hasilKategori = $koneksi->query($ambilKategori);
                     <input type="text" name="namaKategori" placeholder="NAMA KATEGORI" required>
                     <button class="add-button" name="kirim" type="submit">ADD</button>
                 </div>
-                <div class="input-group">
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Kategori</th>
-                        </tr>
-                        <?php
-                        if ($hasilKategori->num_rows > 0) {
-                            while ($baris = $hasilKategori->fetch_assoc()) {
-                                ?>
-                                <tr>
-                                    <td><?php echo $baris['id_kategori']; ?></td>
-                                    <td><?php echo $baris['kategori']; ?></td>
-                                    <td><button class="buang" onclick="hapus('<?php echo $baris['id_kategori']; ?>')">delete</button></td>
-                                </tr>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </table>
-                </div>
             </div>
         </form>
         <p class="katebud">add <a href="add_budget.php">Budget</a></p>
+        <div class="input-group">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategori</th>
+                </tr>
+                <?php
+                if ($hasilKategori->num_rows > 0) {
+                    while ($baris = $hasilKategori->fetch_assoc()) {
+                        ?>
+                        <tr>
+                            <td><?php echo $baris['id_kategori']; ?></td>
+                            <td><?php echo $baris['kategori']; ?></td>
+                            <td><button class="buang" onclick="hapus('<?php echo $baris['id_kategori']; ?>')">delete</button>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </table>
+        </div>
     </div>
     <script>
         function hapus(id) {
