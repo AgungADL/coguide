@@ -33,7 +33,7 @@
 
 > Gambar di bawah adalah contoh tampilan halaman utama CoGuide.
 
-<img src="https://raw.githubusercontent.com/AgungADL/coguide/main/foto/screenshot1.png" width="200" alt="Tampilan CoGuide">
+<img src="https://raw.githubusercontent.com/AgungADL/coguide/main/foto/Screenshot CoGuide.png" width="600" alt="Tampilan CoGuide">
 
 ---
 
