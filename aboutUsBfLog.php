@@ -35,7 +35,7 @@ session_start();
                 melalui masakan. Tak peduli kamu pemula atau koki rumahan berpengalaman, CoGuide punya sesuatu untukmu.
             </p>
 
-            <p>❤ <strong>Gabung bersama komunitas kami.</strong> Temukan resep, simpan favoritmu, dan jadi inspirasi
+            <br><p>❤ <strong>Gabung bersama komunitas kami.</strong> Temukan resep, simpan favoritmu, dan jadi inspirasi
                 bagi dapur orang lain.</p>
 
             <div class="team-section">
@@ -45,6 +45,34 @@ session_start();
                     <div class="team-text">
                         <p><strong>youngDevelop</strong> adalah tim kreatif yang terdiri dari para pemuda berbakat
                             dengan semangat tinggi dan rasa cinta dalam pengembangan teknologi.</p>
+                        <div class="struktur">
+                            <h3>Struktur team :</h3>
+                            <div class="card">
+                                <img src="foto/profil.png" alt="Agung">
+                                <p><strong>Agung</strong>merupakan siswa SMKN 1 KATAPANG jurusan Rekayasa Perangkat
+                                    Lunak tingkat 11. Bekerja sebagai project manager</p>
+                            </div>
+                            <div class="card">
+                                <img src="foto/profil.png" alt="Anandhita">
+                                <p><strong>Anandhita</strong>merupakan siswi SMKN 1 KATAPANG jurusan Rekayasa Perangkat
+                                    Lunak tingkat 11. Bekerja sebagai wakil project manager</p>
+                            </div>
+                            <div class="card">
+                                <img src="foto/profil.png" alt="Alif">
+                                <p><strong>Alif</strong>merupakan siswa SMKN 1 KATAPANG jurusan Rekayasa Perangkat Lunak
+                                    tingkat 11. Bekerja sebagai marketing</p>
+                            </div>
+                            <div class="card">
+                                <img src="foto/profil.png" alt="Nazwa">
+                                <p><strong>Nazwa</strong>merupakan siswi SMKN 1 KATAPANG jurusan Rekayasa Perangkat
+                                    Lunak tingkat 11. Bekerja sebagai bendahara</p>
+                            </div>
+                            <div class="card">
+                                <img src="foto/profil.png" alt="Zalva">
+                                <p><strong>Zalva</strong>merupakan siswi SMKN 1 KATAPANG jurusan Rekayasa Perangkat
+                                    Lunak tingkat 11. Bekerja sebagai sekretaris</p>
+                            </div>
+                        </div>
                         <p>Kami menciptakan <strong>CoGuide</strong> dengan tujuan sederhana: memudahkan orang-orang
                             berbagi dan menemukan resep masakan dengan cara yang menyenangkan dan mudah diakses. Semua
                             dibangun dengan penuh dedikasi, kehangatan, dan pastinya... kasih sayang. ❤️</p>
@@ -56,7 +84,7 @@ session_start();
 
         <footer>
             <p>&copy; <?= date("Y"); ?> CoGuide. Dibuat dengan rasa dan cinta 💛</p>
-            <a href="halaman_sementara.html" class="back-btn">Kembali ke Beranda</a>
+            <a href="index.html" class="back-btn">Kembali ke Beranda</a>
         </footer>
     </div>
 </body>

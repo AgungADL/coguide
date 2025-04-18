@@ -7,9 +7,10 @@ if (!isset($_SESSION["login"])) {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['fav'])) {
     $id = $_POST["id"];
     $id_resep = $_POST["id_resep"];
+    $fav = $_GET['fav'];
 
     // Pastikan hanya pemilik komentar yang bisa hapus
     $query = $koneksi->prepare("SELECT username FROM komentar WHERE id = ?");
@@ -24,7 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hapus->execute();
     }
 
-    header("Location: ../halaman_resep_admin.php?id=$id_resep");
-    exit();
+    if ($fav === 'no') {
+        header("Location: ../halaman_resep_admin.php?id=$id_resep");
+        exit();
+    } else {
+        header("Location: ../halaman_resep_admin_fav.php?id=$id_resep");
+        exit();
+    }
 }
 ?>

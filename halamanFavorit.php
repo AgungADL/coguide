@@ -29,7 +29,7 @@ if (empty($_SESSION["login"])) {
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <div class="back-button" onclick="window.location.href='profilAdmin.php'">←</div>
+            <div class="back-button" onclick="window.location.href='halamanProfil.php'">←</div>
             <h1>FAVORIT</h1>
         </div>
 
